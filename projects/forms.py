@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Project
+from .models import Project, Tarefa
 
 
 class ProjectForm(ModelForm):
@@ -12,4 +12,18 @@ class ProjectForm(ModelForm):
         labels = {
             'name': 'Nome',
             'release_year': 'Data de Entrega',
+        }
+
+class TarefaForm(ModelForm):
+    class Meta:
+        model = Tarefa
+        fields = [
+            'name',
+            'descricao',
+            'data_entrega',
+        ]
+        labels = {
+            'name': 'Nome',
+            'descricao': 'Descrição',
+            'data_entrega': 'Data de Entrega',
         }

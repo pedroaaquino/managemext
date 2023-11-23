@@ -5,8 +5,9 @@ from .temp_data import project_data
 from django.shortcuts import render, get_object_or_404
 from .models import Project
 from django.views import generic
-from .models import Project
-from .forms import ProjectForm
+from .models import Project, Tarefa
+from .forms import ProjectForm, TarefaForm
+
 
 def detail_project(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
@@ -65,3 +66,24 @@ def delete_project(request, project_id):
 
     context = {'project': project}
     return render(request, 'projects/delete.html', context)
+
+
+def create_tarefa(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    if request.method == 'POST':
+        form = TarefaForm(request.POST)
+        if form.is_valid():
+            tarefa_name = form.cleaned_data['name']
+            tarefa_descricao = form.cleaned_data['descricao']
+            tarefa_data_entrega = form.cleaned_data['data_entrega'],
+            tarefa = Tarefa(name=tarefa_name,
+                          descricao=tarefa_descricao,
+                          data_entrega=tarefa_data_entrega
+                          )
+            tarefa.save()
+            return HttpResponseRedirect(
+                reverse('projects:detail', args=(project_id, )))
+    else:    
+        form = ProjectForm()
+    context = {'form': form, 'project': project}
+    return render(request, 'projects/tarefa.html', context)

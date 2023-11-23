@@ -17,7 +17,7 @@
     <h3>Tarefas</h3>
     <ul>
         {% if project.tarefa_set.all %}
-            {% for review in project.tarefa_set.all %}
+            {% for tarefa in project.tarefa_set.all %}
                 <figure>
                     <blockquote>
                         "{{ tarefa.descricao }}"
@@ -28,5 +28,12 @@
             <p>Ainda não existe nenhuma tarefa para este projeto.</p>
         {% endif %}
     </ul>
+
+  </ul>
+    
+  <hr>
+
+  <a href="{% url 'projects:tarefa' project.pk %}"><button>Crie uma tarefa</button></a>
+</section>
     
     {% endblock content %}
