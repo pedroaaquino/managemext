@@ -10,5 +10,23 @@
         <li><a href="{% url 'projects:delete' project.id %}">Apagar Projeto</a></li>
         </ul>
     </section>
+
+    <hr>
+
+<section>
+    <h3>Tarefas</h3>
+    <ul>
+        {% if project.tarefa_set.all %}
+            {% for review in project.tarefa_set.all %}
+                <figure>
+                    <blockquote>
+                        "{{ tarefa.descricao }}"
+                    </blockquote>
+                </figure>
+            {% endfor %}
+        {% else %}
+            <p>Ainda não existe nenhuma tarefa para este projeto.</p>
+        {% endif %}
+    </ul>
     
     {% endblock content %}
