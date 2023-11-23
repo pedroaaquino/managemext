@@ -6,7 +6,9 @@
       <ul>
         <li>{{ project.name }}</li>
         <li>Data de entrega: {{ project.data_entrega }}</li>
-      </ul>
+        <li><a href="{% url 'projects:update' project.id %}">Editar Projeto</a></li>
+        <li><a href="{% url 'projects:delete' project.id %}">Apagar Projeto</a></li>
+        </ul>
     </section>
     
     {% endblock content %}

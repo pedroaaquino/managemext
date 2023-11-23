@@ -1,0 +1,10 @@
+{% extends 'staticpages/base.html' %}
+{% block content %}
+<form action="{% url 'projects:delete' project.id %}" method="post">
+  {% csrf_token %}
+  <p>
+    Você tem certeza que deseja apagar o projeto "{{ project.name }} ({{project.data_entrega }})"?
+  </p>
+  <button type="submit">Apagar</button>
+</form>
+{% endblock content %}
