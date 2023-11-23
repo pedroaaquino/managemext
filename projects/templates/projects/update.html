@@ -1,21 +1,11 @@
 {% extends 'staticpages/base.html' %}
+
 {% block content %}
 <h2>Atualizar Dados do Projeto {{ project.name }} ({{ project.data_entrega}})</h2>
-<form method="post" action="{% url 'projects:update' project.id%}">
-  {% csrf_token %}
-  <p>
-    <label for="id_name">Nome:</label>
-    <input type="text" name="name" id="id_name" value="{{ project.name }}" />
-  </p>
-  <p>
-    <label for="data_entrega">Data de entrega:</label>
-    <input
-      type="date"
-      name="data_entrega"
-      id="id_data_entrega"
-      value="{{ project.data_entrega }}"
-    />
-  </p>
-  <button type="submit">Atualizar</button>
+<form method="POST" action="{% url 'projects:update' project.id%}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Atualizar</button>
 </form>
+
 {% endblock content %}
