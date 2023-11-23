@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>{% block title %}Portl da Fiel{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'footer.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'header.css' %}">
+
+    
+    {%  block head %}
+    {% endblock %}
+    
+    
+</head>
+<body>
+    <header>
+        <h1>Managemext</h1>
+        <nav>
+            <ul>
+                <p>
+                    <a href="{% url 'index'%}">Home</a>
+                </p>
+            </ul>
+        </nav>
+    </header>
+    
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>Copyright 2023</p>
+    </footer>
+    
+</body>
+</html>

@@ -1,0 +1,35 @@
+header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(83, 83, 238);
+  }
+
+nav {
+    display: flex;
+    background-color: rgb(83, 83, 238);
+
+}
+
+
+header ul {
+    display: flex;
+    
+}  
+
+header ul p {
+    display: flex;
+}
+
+header ul p  a {
+    display: flex;
+    margin-left: 40px;
+    text-decoration: none;
+    font-weight: bold;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+header ul p  a:hover{
+    transform: scale(1.1);
+}
