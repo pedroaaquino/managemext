@@ -1,0 +1,12 @@
+{% extends 'staticpages/base.html' %} {% block title %} {{ project.name }} ({{
+    project.data_entrega }} {% endblock title %} {% block content %}
+    <h2>Detalhes do Projeto {{ project.name }} ({{ project.data_entrega }})</h2>
+    
+    <section class="dados-de-projeto">
+      <ul>
+        <li>{{ project.name }}</li>
+        <li>Data de entrega: {{ project.data_entrega }}</li>
+      </ul>
+    </section>
+    
+    {% endblock content %}

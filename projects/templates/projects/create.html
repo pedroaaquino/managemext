@@ -1,0 +1,16 @@
+{% extends 'staticpages/base.html' %} {% block content %}
+<h2>Inserir Novo Projeto</h2>
+<form method="POST" action="{% url 'projects:create' %}">
+  {% csrf_token %}
+  <p>
+    <label for="id_name">Nome:</label>
+    <input type="text" name="name" id="id_name" />
+  </p>
+  <p>
+    <label for="id_data_entrega">Data de entrega:</label>
+    <input type="date" name="data_entrega" id="id_data_entrega" />
+  </p>
+  <button type="submit">Criar</button>
+</form>
+
+{% endblock content %}
