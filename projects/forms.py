@@ -21,9 +21,11 @@ class TarefaForm(ModelForm):
             'name',
             'descricao',
             'data_entrega',
+            'concluida',
         ]
         labels = {
             'name': 'Nome',
             'descricao': 'Descrição',
             'data_entrega': 'Data de Entrega',
+            'concluida': 'Tarefa Concluída?',
         }

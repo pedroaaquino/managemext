@@ -9,6 +9,7 @@ urlpatterns = [
     path('update/<int:project_id>/', views.update_project, name='update'),
     path('delete/<int:project_id>/', views.delete_project, name='delete'),
     path('<int:project_id>/tarefa/', views.create_tarefa, name='tarefa'),
+    path('<int:project_id>/tarefa/<int:tarefa_id>/', views.update_tarefa, name='update_tarefa'),
     path('accounts/', include('django.contrib.auth.urls')),
 
 ]

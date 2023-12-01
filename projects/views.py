@@ -75,10 +75,13 @@ def create_tarefa(request, project_id):
         if form.is_valid():
             tarefa_name = form.cleaned_data['name']
             tarefa_descricao = form.cleaned_data['descricao']
-            tarefa_data_entrega = form.cleaned_data['data_entrega'],
+            tarefa_data_entrega = form.cleaned_data['data_entrega']
+            tarefa_concluida = form.cleaned_data.get('concluida', False)
             tarefa = Tarefa(name=tarefa_name,
                           descricao=tarefa_descricao,
-                          data_entrega=tarefa_data_entrega
+                          data_entrega=tarefa_data_entrega,
+                          concluida=tarefa_concluida,
+                          projeto = project
                           )
             tarefa.save()
             return HttpResponseRedirect(
@@ -87,3 +90,28 @@ def create_tarefa(request, project_id):
         form = ProjectForm()
     context = {'form': form, 'project': project}
     return render(request, 'projects/tarefa.html', context)
+
+
+def update_tarefa(request, project_id, tarefa_id):
+    project = get_object_or_404(Project, pk=project_id)
+    tarefa = get_object_or_404(Tarefa, pk=tarefa_id)
+
+    if request.method == "POST":
+        form = TarefaForm(request.POST)
+        if form.is_valid():
+            tarefa.name = form.cleaned_data['name']
+            tarefa.descricao = form.cleaned_data['descricao']
+            tarefa.data_entrega = form.cleaned_data['data_entrega']
+            tarefa.concluida = form.cleaned_data.get('concluida', False)
+            tarefa.save()
+            return HttpResponseRedirect(
+                reverse('projects:detail', args=(project.id)))
+    else:
+        form = TarefaForm(
+            initial={
+                'name': tarefa.name,
+                'data_entrega': tarefa.data_entrega
+            })
+        
+    context = {'tarefa': tarefa, 'form': form}
+    return render(request, 'projects/update_tarefa.html', context)

@@ -6,8 +6,8 @@
       <ul>
         <li>{{ project.name }}</li>
         <li>Data de entrega: {{ project.data_entrega }}</li>
-        <li><a href="{% url 'projects:update' project.id %}">Editar Projeto</a></li>
-        <li><a href="{% url 'projects:delete' project.id %}">Apagar Projeto</a></li>
+        <li><a href="{% url 'projects:update' project.id %}"><button>Editar Projeto</button></a></li>
+        <li><a href="{% url 'projects:delete' project.id %}"><button>Apagar Projeto</button></a></li>
         </ul>
     </section>
 
@@ -20,7 +20,7 @@
             {% for tarefa in project.tarefa_set.all %}
                 <figure>
                     <blockquote>
-                        "{{ tarefa.descricao }}"
+                        <a href="{% url 'projects:update_tarefa' project_id=project.id tarefa_id=tarefa.id %}">{{ tarefa.name }} - {{ tarefa.descricao }} ({{ tarefa.concluida|yesno:"Tarefa Concluída,Tarefa Não Concluída" }})</a>
                     </blockquote>
                 </figure>
             {% endfor %}

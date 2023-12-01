@@ -1,0 +1,11 @@
+{% extends 'staticpages/base.html' %}
+
+{% block content %}
+<h2>Atualizar Dados da Tarefa {{ tarefa.name }} </h2>
+<form method="POST" action="{% url 'projects:update_tarefa' project.id tarefa.id%}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Atualizar</button>
+</form>
+
+{% endblock content %}
