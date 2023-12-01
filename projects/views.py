@@ -105,7 +105,7 @@ def update_tarefa(request, project_id, tarefa_id):
             tarefa.concluida = form.cleaned_data.get('concluida', False)
             tarefa.save()
             return HttpResponseRedirect(
-                reverse('projects:detail', args=(project.id)))
+                reverse('projects:detail', args=(project.id, )))
     else:
         form = TarefaForm(
             initial={
@@ -113,5 +113,5 @@ def update_tarefa(request, project_id, tarefa_id):
                 'data_entrega': tarefa.data_entrega
             })
         
-    context = {'tarefa': tarefa, 'form': form}
+    context = {'tarefa': tarefa, 'project': project, 'form': form}
     return render(request, 'projects/update_tarefa.html', context)
