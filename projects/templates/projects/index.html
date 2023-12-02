@@ -1,12 +1,6 @@
 {% extends 'staticpages/base.html' %} {% block content %}
 <h2>Todos os Projetos</h2>
 
-<section>
-    <p>
-      <a href="{% url 'projects:create' %}">Adicionar Novo Projeto</a>
-    </p>
-  </section>
-
 {% if project_list %}
 <section class="lista-de-cards">
   {% for project in project_list %}
@@ -17,4 +11,14 @@
 </section>
 {% else %}
 <p>Não foi encontrado nenhum projeto.</p>
-{% endif %} {% endblock content %}
+{% endif %} 
+
+<section>
+  {% if perms.movies.add_movie %}
+    <p>
+      <a href="{% url 'projects:create' %}"><button>Adicionar Novo Projeto</button></a>
+    </p>
+  {% endif%}
+  </section>
+  
+  {% endblock content %}

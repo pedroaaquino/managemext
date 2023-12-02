@@ -7,6 +7,8 @@ from .models import Project
 from django.views import generic
 from .models import Project, Tarefa, Nucleo
 from .forms import ProjectForm, TarefaForm
+from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 
 def detail_project(request, project_id):
@@ -19,6 +21,8 @@ def list_projects(request):
     context = {"project_list": project_list}
     return render(request, 'projects/index.html', context)
 
+@login_required
+@permission_required('projects.add_project')
 def create_project(request):
     if request.method == 'POST':
         form = ProjectForm(request.POST)
@@ -121,7 +125,7 @@ class NucleoListView(generic.ListView):
     template_name = 'projects/nucleos.html'
 
 
-class NucleoCreateView(generic.CreateView):
+class NucleoCreateView(LoginRequiredMixin, PermissionRequiredMixin, generic.CreateView):
     model = Nucleo
     template_name = 'projects/create_nucleo.html'
     fields = ['name', 'projects']

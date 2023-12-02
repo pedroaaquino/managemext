@@ -16,7 +16,9 @@ Núcleos
     <hr>
     {% endfor %}
 
-    <a href="{% url 'projects:create-nucleo' %}"><button>Criar Novo Núcleo</button></a>
+    {% if perms.movies.add_movie %}
+        <a href="{% url 'projects:create-nucleo' %}"><button>Criar Novo Núcleo</button></a>
+    {% endif %}
 </section>
 
 {% endblock content %}
