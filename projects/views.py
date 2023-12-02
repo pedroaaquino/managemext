@@ -9,6 +9,8 @@ from .models import Project, Tarefa, Nucleo
 from .forms import ProjectForm, TarefaForm
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.models import User, Group
+from accounts.views import user_list
 
 
 def detail_project(request, project_id):
@@ -72,6 +74,9 @@ def delete_project(request, project_id):
     return render(request, 'projects/delete.html', context)
 
 
+
+@login_required
+@permission_required('projects.add_project')
 def create_tarefa(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     if request.method == 'POST':
@@ -96,6 +101,8 @@ def create_tarefa(request, project_id):
     return render(request, 'projects/tarefa.html', context)
 
 
+@login_required
+@permission_required('projects.add_project')
 def update_tarefa(request, project_id, tarefa_id):
     project = get_object_or_404(Project, pk=project_id)
     tarefa = get_object_or_404(Tarefa, pk=tarefa_id)
@@ -130,9 +137,27 @@ class NucleoCreateView(LoginRequiredMixin, PermissionRequiredMixin, generic.Crea
     template_name = 'projects/create_nucleo.html'
     fields = ['name', 'projects']
     success_url = reverse_lazy('projects:nucleos')
+    permission_required = 'projects.add_nucleo'
 
 def detail_nucleo(request, nucleo_id):  
     nucleo = get_object_or_404(Nucleo, pk=nucleo_id)
     projects_list = Project.objects.filter(nucleo=nucleo_id)
     context = {'nucleo': nucleo,  'post_list': projects_list}
     return render(request, 'projects/detail_nucleo.html', context)
+
+
+@login_required
+@permission_required('projects.add_project')
+def change_user_group(request):
+    if request.method == 'POST':
+        user_id = request.POST.get('user_id')
+        group_id = request.POST.get('group_id')
+
+        user = get_object_or_404(User, id=user_id)
+        group = get_object_or_404(Group, id=group_id)
+
+        user.groups.clear() 
+        user.groups.add(group)  
+    users = User.objects.all()
+    groups = Group.objects.all()
+    return render(request, 'projects/list_users.html', {'users': users, 'groups': groups})

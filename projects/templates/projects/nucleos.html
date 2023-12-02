@@ -16,7 +16,7 @@ Núcleos
     <hr>
     {% endfor %}
 
-    {% if perms.projects.add_project %}
+    {% if perms.projects.add_nucleo %}
         <a href="{% url 'projects:create-nucleo' %}"><button>Criar Novo Núcleo</button></a>
     {% endif %}
 </section>

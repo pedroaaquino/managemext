@@ -34,6 +34,9 @@
                 </p>
                 {% if user.is_authenticated %}
                     <p>
+                        <a href="{% url 'projects:change_user_group' %}">Manutenção de usuários</a>
+                    </p>
+                    <p>
                         <a href="{% url 'logout' %}">Log out</a>
                     </p>
                     <p>
@@ -44,6 +47,7 @@
                         <a href="{% url 'login' %}">Log in</a>
                     </p>
                 {% endif %}
+
             </ul>
         </nav>
     </header>

@@ -14,4 +14,5 @@ urlpatterns = [
     path('nucleos/', views.NucleoListView.as_view(), name='nucleos'),
     path('nucleos/create', views.NucleoCreateView.as_view(), name='create-nucleo'),
     path('nucleos/<int:nucleo_id>', views.detail_nucleo, name='detail_nucleo'),
+    path('change_user_group/', views.change_user_group, name='change_user_group'),
 ]
