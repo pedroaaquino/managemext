@@ -32,6 +32,18 @@
                 <p>
                     <a href="{% url 'projects:nucleos' %}">Núcleos</a>
                 </p>
+                {% if user.is_authenticated %}
+                    <p>
+                        <a href="{% url 'logout' %}">Log out</a>
+                    </p>
+                    <p>
+                        <a> Usuário: {{ user.username }} </a>
+                    </p>
+                {% else %}
+                    <p>
+                        <a href="{% url 'login' %}">Log in</a>
+                    </p>
+                {% endif %}
             </ul>
         </nav>
     </header>
