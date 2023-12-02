@@ -11,5 +11,7 @@ urlpatterns = [
     path('<int:project_id>/tarefa/', views.create_tarefa, name='tarefa'),
     path('<int:project_id>/tarefa/<int:tarefa_id>/', views.update_tarefa, name='update_tarefa'),
     path('accounts/', include('django.contrib.auth.urls')),
-
+    path('nucleos/', views.NucleoListView.as_view(), name='nucleos'),
+    path('nucleos/create', views.NucleoCreateView.as_view(), name='create-nucleo'),
+    path('nucleos/<int:nucleo_id>', views.detail_nucleo, name='detail_nucleo'),
 ]

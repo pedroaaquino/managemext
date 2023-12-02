@@ -1,0 +1,22 @@
+{% extends 'staticpages/base.html' %}
+
+{% block title %}
+Núcleos
+{% endblock title %}
+
+{% block content %}
+<h2>Núcleos</h2>
+
+<section>
+    {% for nucleo in nucleo_list %}
+    <hr>
+    <article>
+            <h3> <a href="{% url 'projects:detail_nucleo' nucleo.id %}"> {{nucleo.name}} </a> </h3> 
+    </article>
+    <hr>
+    {% endfor %}
+
+    <a href="{% url 'projects:create-nucleo' %}"><button>Criar Novo Núcleo</button></a>
+</section>
+
+{% endblock content %}

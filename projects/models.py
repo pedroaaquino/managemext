@@ -20,3 +20,9 @@ class Tarefa(models.Model):
         return f'{self.name} - {self.descricao}'
 
 
+class Nucleo(models.Model):
+    name = models.CharField(max_length=255)
+    projects = models.ManyToManyField(Project)
+
+    def __str__(self):
+        return f'{self.name}'

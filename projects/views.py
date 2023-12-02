@@ -1,11 +1,11 @@
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from .temp_data import project_data
 from django.shortcuts import render, get_object_or_404
 from .models import Project
 from django.views import generic
-from .models import Project, Tarefa
+from .models import Project, Tarefa, Nucleo
 from .forms import ProjectForm, TarefaForm
 
 
@@ -115,3 +115,20 @@ def update_tarefa(request, project_id, tarefa_id):
         
     context = {'tarefa': tarefa, 'project': project, 'form': form}
     return render(request, 'projects/update_tarefa.html', context)
+
+class NucleoListView(generic.ListView):
+    model = Nucleo
+    template_name = 'projects/nucleos.html'
+
+
+class NucleoCreateView(generic.CreateView):
+    model = Nucleo
+    template_name = 'projects/create_nucleo.html'
+    fields = ['name', 'projects']
+    success_url = reverse_lazy('projects:nucleos')
+
+def detail_nucleo(request, nucleo_id):  
+    nucleo = get_object_or_404(Nucleo, pk=nucleo_id)
+    nucleos_list = Nucleo.objects.filter(nucleo=nucleo_id)
+    context = {'nucleo': nucleo,  'post_list': nucleos_list}
+    return render(request, 'projects/detail_nucleo.html', context)

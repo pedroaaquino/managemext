@@ -1,0 +1,21 @@
+{% extends 'staticpages/base.html' %}
+
+{% block title %}
+{{nucleo.name}}
+{% endblock title %}
+
+{% block content %}
+
+<section>
+    <article>
+            <h3> {{nucleo.name}} </h3>
+        <p>Projetos:</p>
+            {% for jogo in nucleo.projects.all %}
+            <article class="card">
+            <a href="{% url 'projets:detail' project.id %}"> {{ project.name }} </a>
+            </article>
+            {% endfor %}
+    </article>
+</section>
+
+{% endblock content %}

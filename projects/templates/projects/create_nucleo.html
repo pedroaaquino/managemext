@@ -1,0 +1,16 @@
+{% extends 'staticpages/base.html' %}
+
+{% block title %}
+Criar Núcleo
+{% endblock title %}
+
+{% block content %}
+<h2>Criar Núcleo</h2>
+
+<form action="{% url 'projects:create-nucleo' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Criar</button>
+</form>
+
+{% endblock content %}
