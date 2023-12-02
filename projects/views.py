@@ -133,6 +133,6 @@ class NucleoCreateView(LoginRequiredMixin, PermissionRequiredMixin, generic.Crea
 
 def detail_nucleo(request, nucleo_id):  
     nucleo = get_object_or_404(Nucleo, pk=nucleo_id)
-    nucleos_list = Nucleo.objects.filter(nucleo=nucleo_id)
-    context = {'nucleo': nucleo,  'post_list': nucleos_list}
+    projects_list = Project.objects.filter(nucleo=nucleo_id)
+    context = {'nucleo': nucleo,  'post_list': projects_list}
     return render(request, 'projects/detail_nucleo.html', context)

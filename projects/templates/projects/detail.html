@@ -6,8 +6,10 @@
       <ul>
         <li>{{ project.name }}</li>
         <li>Data de entrega: {{ project.data_entrega }}</li>
-        <li><a href="{% url 'projects:update' project.id %}"><button>Editar Projeto</button></a></li>
-        <li><a href="{% url 'projects:delete' project.id %}"><button>Apagar Projeto</button></a></li>
+        {% if perms.projects.add_project %}
+            <li><a href="{% url 'projects:update' project.id %}"><button>Editar Projeto</button></a></li>
+            <li><a href="{% url 'projects:delete' project.id %}"><button>Apagar Projeto</button></a></li>
+        {% endif %}
         </ul>
     </section>
 

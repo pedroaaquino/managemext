@@ -15,7 +15,7 @@ def signup(request):
             except Group.DoesNotExist:
                 user_group = Group(name="basic_user")
                 user_group.save()
-                user_group.permissions.set([Permission.objects.get(codename=c) for c in ["add_user", "change_user", "view_user", "add_nucleo", "change_nucleo", "delete_nucleo", "view_nucleo", "view_project", "add_tarefa", "change_tarefa", "delete_tarefa", "view_tarefa",]])
+                user_group.permissions.set([Permission.objects.get(codename=c) for c in ["add_user", "view_user", "view_nucleo", "view_project", "change_tarefa", "view_tarefa",]])
             user.groups.add(user_group)
             return HttpResponseRedirect(reverse('login'))
     else:

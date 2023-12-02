@@ -10,9 +10,9 @@
     <article>
             <h3> {{nucleo.name}} </h3>
         <p>Projetos:</p>
-            {% for jogo in nucleo.projects.all %}
+            {% for project in nucleo.projects.all %}
             <article class="card">
-            <a href="{% url 'projets:detail' project.id %}"> {{ project.name }} </a>
+            <a href="{% url 'projects:detail' project.id %}"> {{ project.name }} </a>
             </article>
             {% endfor %}
     </article>
