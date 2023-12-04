@@ -5,7 +5,9 @@
 <section class="lista-de-cards">
   {% for project in project_list %}
   <article class="card">
-    <a href="{% url 'projects:detail' project.id %}">{{ project.name }}</a>
+    <hr>
+    <h3><a href="{% url 'projects:detail' project.id %}">{{ project.name }}</a></h3>
+    <hr>
   </article>
   {% endfor %}
 </section>
