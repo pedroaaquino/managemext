@@ -104,8 +104,8 @@ def create_tarefa(request, project_id):
             flow = InstalledAppFlow.from_client_secrets_file(
                 'managemext.json', scopes=SCOPES
             )
-            #creds = flow.run_local_server(host='0.0.0.0', port=0)
-            creds = flow.run_console()
+            creds = flow.run_local_server(port=0)
+            #creds = flow.run_console()
 
             # Criação do evento no Google Calendar
             service = build('calendar', 'v3', credentials=creds)
