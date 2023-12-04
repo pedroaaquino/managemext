@@ -169,7 +169,7 @@ def detail_nucleo(request, nucleo_id):
 
 
 @login_required
-@permission_required('projects.add_project')
+@permission_required('auth.change_user')
 def change_user_group(request):
     if request.method == 'POST':
         user_id = request.POST.get('user_id')
